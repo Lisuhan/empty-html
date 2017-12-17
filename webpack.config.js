@@ -1,6 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
-const HtmlWebpackPlugin = require("html-webpack-plugin") // 通过 npm 安装
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const CleanWebpackPlugin = require("clean-webpack-plugin")
 
@@ -31,14 +31,7 @@ const config = {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: [
-                        {
-                            loader: "css-loader",
-                        },
-                        {
-                            loader: "postcss-loader",
-                        },
-                    ],
+                    use: ["css-loader", "postcss-loader"],
                 }),
             },
             {
@@ -49,11 +42,18 @@ const config = {
                 }),
             },
             {
-                test: /\.(png|jpg|gif|ttf|eot|svg|woff(2)?)(\?[^('|")]*)?$/,
-                loader: "file-loader",
-                options: {
-                    name: "images/[name].[ext]",
-                },
+                test: /\.(png|jpg|gif)$/, // 图片加载器，同file-loader，更适合图片，可以将较小的图片转成base64，减少http请求
+                use:
+                    "url-loader?limit=8192&name=./images/[hash:5].[name].[ext]", // 将小于8192byte的图片转成base64码
+            },
+            {
+                test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
+                use: "file-loader?name=./fonts/[hash:5].[name].[ext]",
+            },
+
+            {
+                test: /\.html$/,
+                loader: "html-withimg-loader",
             },
         ],
     },
@@ -62,7 +62,11 @@ const config = {
             template: path.resolve(__dirname, "src/index.html"),
         }),
         new webpack.HotModuleReplacementPlugin(), //热加载插件
-        new ExtractTextPlugin("style.css"),
+        new ExtractTextPlugin({
+            filename: "index.css",
+            disable: false,
+            allChunks: true,
+        }),
         new CleanWebpackPlugin("dist/*.*", {
             root: __dirname,
             verbose: true,
