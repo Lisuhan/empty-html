@@ -1,11 +1,321 @@
 $imgUrl: "../images"!default;
+.clearfix {
+    *zoom: 1;
+    &:after {
+        display: block;
+        clear: both;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        content: ".";
+    }
+}
 
-.container {
+.full-height {
+    height: 100%;
+}
+.tu-fl {
+    float: left;
+}
+#container {
+    min-width: 1220px;
     background: url("#{$imgUrl}/background.png") no-repeat 0 0;
+    position: relative;
     background-size: 100% 100%;
     height: 100%;
     width: 100%;
-    .header {
-        // background: url("#{$imgUrl}/header.png") no-repeat 0 0;
+    header {
+        background: url("#{$imgUrl}/header-bg.png") no-repeat 0 0;
+        height: 13%;
+        position: relative;
+        background-size: 100%;
     }
+    .header-bottom {
+        background: url("#{$imgUrl}/tool-top.png") no-repeat 0 0;
+        height: 101px;
+        width: 50%;
+        position: absolute;
+        bottom: 25%;
+        left: 20%;
+        background-size: 100%;
+    }
+    nav {
+        float: left;
+        width: 16%;
+    }
+    .button {
+        background: url(#{$imgUrl}/button-bg.png) no-repeat;
+        background-size: 100% 100%;
+        width: 65%;
+        margin: 0 15% 20px 20%;
+        height: 63px;
+        position: relative;
+        line-height: 63px;
+        text-align: center;
+        font-size: 28px;
+        font-weight: 500;
+        color: #7beeea;
+        float: right;
+        cursor: pointer;
+        &.active {
+            background: url(#{$imgUrl}/button-bg-active.png) no-repeat;
+            background-size: 100% 100%;
+            &::before {
+                position: absolute;
+                content: " ";
+                border: 3px solid #02f9fe;
+                left: -44px;
+                height: 32px;
+                width: 21px;
+                top: 11px;
+            }
+            &::after {
+                position: absolute;
+                content: " ";
+                width: 0;
+                height: 0;
+                border-top: 14px solid transparent;
+                border-bottom: 14px solid transparent;
+                border-left: 14px solid #02f9fe;
+                left: -38px;
+                top: 16px;
+            }
+        }
+    }
+    section {
+        padding: 0 2% 0 1%;
+        height: 75%;
+    }
+    article {
+        float: left;
+        width: 83%;
+        box-sizing: border-box;
+        .left {
+            background: url(#{$imgUrl}/tool-left.png) no-repeat;
+            width: 49px;
+            background-size: auto 100%;
+            float: left;
+        }
+        .right {
+            background: url(#{$imgUrl}/tool-right.png) no-repeat;
+            width: 49px;
+            background-size: auto 100%;
+            float: right;
+        }
+        .content {
+            float: left;
+            width: calc(100% - 100px);
+            .line-chart-container {
+                float: left;
+                height: 50%;
+                width: 65%;
+                box-sizing: border-box;
+                padding: 0 5% 0 5%;
+                .part-1 {
+                    height: 15%;
+                    display: block;
+                    margin-bottom: 20px;
+                }
+                .part-2 {
+                    height: 70%;
+                    background: url("#{$imgUrl}/grid.png") repeat;
+                    display: flex;
+                    align-items: flex-end;
+                    position: relative;
+                    .number {
+                        color: #7beeea;
+                        position: absolute;
+                        top: 0;
+                        left: -26px;
+                        width: 20px;
+                        line-height: 16px;
+                        font-weight: 500;
+                    }
+                    .time {
+                        color: #7beeea;
+                        position: absolute;
+                        left: -40px;
+                        font-weight: 500;
+                    }
+                }
+            }
+            .pie-chart-container {
+                height: 50%;
+                width: 35%;
+                box-sizing: border-box;
+                padding: 0 3% 0 3%;
+                float: left;
+                .part-1 {
+                    height: 15%;
+                    display: block;
+                    margin-bottom: 20px;
+                }
+                .part-2 {
+                    width: 100%;
+                    height: 50%;
+                    background: url("#{$imgUrl}/pieMap.png") no-repeat;
+                    background-size: 100%;
+                }
+                .part-3 {
+                    width: 100%;
+                    height: 50%;
+                    background: url("#{$imgUrl}/pieText.png") no-repeat;
+                    background-size: 100%;
+                }
+            }
+            .circle-container {
+                background: url("#{$imgUrl}/circle.png") no-repeat 0 bottom;
+                width: 17%;
+                height: 40%;
+                background-size: 100%;
+                float: left;
+            }
+            .company-container {
+                float: left;
+                display: flex;
+                width: 83%;
+                height: 50%;
+                box-sizing: border-box;
+                padding: 0 2% 0 3%;
+                align-items: flex-end;
+                .company-item {
+                    width: 33%;
+                    height: 70%;
+                    background: url("#{$imgUrl}/company-bg.png") no-repeat;
+                    margin: 0 1%;
+                    background-size: 100% 100%;
+                    position: relative;
+                }
+                .company-item p:nth-child(2) {
+                    margin-top: 21px;
+                }
+
+                .company-item-title {
+                    width: 100%;
+                    position: absolute;
+                    top: -40px;
+                    display: block;
+                    text-align: center;
+                }
+                .company-item-ul {
+                    height: 92%;
+                    overflow-y: auto;
+                    padding-top: 25px;
+                    padding-bottom: 25px;
+                    box-sizing: border-box;
+                }
+                .company-item-li {
+                    width: 100%;
+                    padding-left: 15%;
+                    box-sizing: border-box;
+                    color: #7beeea;
+                    font-weight: 500;
+                    font-size: 17px;
+                    line-height: 170%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .line-chart-run .line-map-item {
+            visibility: hidden;
+            animation: animate-height 1.5s 1 forwards;
+            animation-timing-function: cubic-bezier(0.35, 0.95, 0.67, 0.99);
+        }
+        .line-map-item {
+            box-shadow: 3px -4px 0 0 #3984e6;
+            &::before {
+                position: absolute;
+                content: " ";
+                width: 0;
+                height: 0;
+                top: -4px;
+                border-bottom: 4px solid #3984e6;
+                border-left: 3px solid transparent;
+            }
+            &::after {
+                position: absolute;
+                content: " ";
+                width: 0;
+                height: 0;
+                border-top: 4px solid #3984e6;
+                border-right: 3px solid transparent;
+                bottom: 0px;
+                right: -3px;
+            }
+        }
+    }
+    footer {
+        background: url("#{$imgUrl}/footer-bottom.png") no-repeat 0 bottom;
+        background-size: 100%;
+        width: 100%;
+        height: 12%;
+        position: absolute;
+        bottom: 0;
+        .footer-top {
+            background: url("#{$imgUrl}/footer-top.png") no-repeat 0 40%;
+            height: 100%;
+            width: 27%;
+            position: absolute;
+            top: 0;
+            left: 21%;
+            background-size: 100%;
+        }
+        .footer-left {
+            background: url("#{$imgUrl}/footer-left.png") no-repeat 0 90%;
+            height: 100%;
+            width: 17%;
+            position: absolute;
+            top: 0;
+            left: 1%;
+            background-size: 100%;
+        }
+        .footer-right {
+            background: url("#{$imgUrl}/footer-right.png") no-repeat 0 90%;
+            height: 100%;
+            width: 19%;
+            position: absolute;
+            top: 0;
+            right: 1%;
+            background-size: 100%;
+        }
+    }
+
+    .title {
+        font-size: 28px;
+        font-weight: 500;
+        color: #7beeea;
+    }
+}
+
+@keyframes animate-height {
+    0% {
+        height: 0;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+.scrollbar::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+/*定义滚动条的轨道，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+/*定义滑块，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-thumb {
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #555;
 }
